@@ -93,7 +93,7 @@ class _AddMemberState extends State<AddMember> {
                   controller: _nameController,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Field Can\'t be Blank';
+                      return 'Enter valid Name';
                     } else {
                       return null;
                     }
@@ -101,10 +101,10 @@ class _AddMemberState extends State<AddMember> {
                   style: p1_paragraph,
                   decoration: InputDecoration(
                       filled: false,
-                      errorStyle:
-                          Theme.of(context).textTheme.bodyText1!.copyWith(
-                                fontSize: 12,
-                              ),
+                      errorStyle: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 12, color: Colors.red),
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey)),
                       focusedBorder: const OutlineInputBorder(
@@ -134,7 +134,7 @@ class _AddMemberState extends State<AddMember> {
                         maxLength: 2,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Field Can\'t be Blank';
+                            return 'Invalid DD';
                           } else {
                             return null;
                           }
@@ -143,10 +143,10 @@ class _AddMemberState extends State<AddMember> {
                         decoration: InputDecoration(
                             filled: false,
                             hintText: 'DD',
-                            errorStyle:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12,
-                                    ),
+                            errorStyle: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.red),
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: const OutlineInputBorder(
@@ -168,7 +168,7 @@ class _AddMemberState extends State<AddMember> {
                         maxLength: 2,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Field Can\'t be Blank';
+                            return 'Invalid MM';
                           } else {
                             return null;
                           }
@@ -177,10 +177,10 @@ class _AddMemberState extends State<AddMember> {
                         decoration: InputDecoration(
                             filled: false,
                             hintText: 'MM',
-                            errorStyle:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12,
-                                    ),
+                            errorStyle: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.red),
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: const OutlineInputBorder(
@@ -202,7 +202,7 @@ class _AddMemberState extends State<AddMember> {
                         maxLength: 4,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Field Can\'t be Blank';
+                            return 'Invalid YYYY';
                           } else {
                             return null;
                           }
@@ -211,10 +211,10 @@ class _AddMemberState extends State<AddMember> {
                         decoration: InputDecoration(
                             filled: false,
                             hintText: 'YYYY',
-                            errorStyle:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12,
-                                    ),
+                            errorStyle: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.red),
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: const OutlineInputBorder(
@@ -248,7 +248,7 @@ class _AddMemberState extends State<AddMember> {
                         maxLength: 2,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Field Can\'t be Blank';
+                            return 'Invalid HH';
                           } else {
                             return null;
                           }
@@ -257,10 +257,10 @@ class _AddMemberState extends State<AddMember> {
                         decoration: InputDecoration(
                             filled: false,
                             hintText: 'HH',
-                            errorStyle:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12,
-                                    ),
+                            errorStyle: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.red),
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: const OutlineInputBorder(
@@ -282,7 +282,7 @@ class _AddMemberState extends State<AddMember> {
                         maxLength: 2,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'Field Can\'t be Blank';
+                            return 'Invalid MM';
                           } else {
                             return null;
                           }
@@ -291,10 +291,10 @@ class _AddMemberState extends State<AddMember> {
                         decoration: InputDecoration(
                             filled: false,
                             hintText: 'MM',
-                            errorStyle:
-                                Theme.of(context).textTheme.bodyText1!.copyWith(
-                                      fontSize: 12,
-                                    ),
+                            errorStyle: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .copyWith(fontSize: 12, color: Colors.red),
                             enabledBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey)),
                             focusedBorder: const OutlineInputBorder(
@@ -373,7 +373,7 @@ class _AddMemberState extends State<AddMember> {
                   controller: _placeOfBirthController,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return 'Field Can\'t be Blank';
+                      return 'Please select a city';
                     } else {
                       return null;
                     }
@@ -381,10 +381,10 @@ class _AddMemberState extends State<AddMember> {
                   style: p1_paragraph,
                   decoration: InputDecoration(
                       filled: false,
-                      errorStyle:
-                          Theme.of(context).textTheme.bodyText1!.copyWith(
-                                fontSize: 12,
-                              ),
+                      errorStyle: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(fontSize: 12, color: Colors.red),
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey)),
                       focusedBorder: const OutlineInputBorder(
@@ -476,7 +476,9 @@ class _AddMemberState extends State<AddMember> {
                     TextButton(
                       style:
                           TextButton.styleFrom(backgroundColor: secondaryColor),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                      },
                       child: Text(
                         'Save Changes',
                         style: p2_paragraph.copyWith(color: Colors.white),
