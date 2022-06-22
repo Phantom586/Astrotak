@@ -1,10 +1,9 @@
-import 'package:astrotak/data/models/question_category.dart';
+import 'package:astrotak/presentation/widgets/ques_category_dropdown.dart';
+import 'package:astrotak/presentation/widgets/ques_suggestion_list.dart';
 import 'package:astrotak/logic/cubit/question_category_cubit.dart';
 import 'package:astrotak/presentation/theme/astro_colors.dart';
 import 'package:astrotak/presentation/theme/text_styles.dart';
 import 'package:astrotak/logic/cubit/internet_cubit.dart';
-import 'package:astrotak/presentation/widgets/ques_category_dropdown.dart';
-import 'package:astrotak/presentation/widgets/ques_suggestion_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +33,7 @@ class _AskQuestionsState extends State<AskQuestions> {
       listener: (context, state) async {
         if (state is InternetConnected) {
           // Fetching the Question Categories List.
-          context.read<QuestionCategoryCubit>().getQuestionCategories();
+          context.read<QuestionCategoryCubit>().fetchAllQuestionCategories();
         } else if (state is InternetDisconnected) {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Internet Disconnected')));
@@ -157,8 +156,11 @@ class _AskQuestionsState extends State<AskQuestions> {
                               );
                             } else if (state is QuestionCategoryLoading) {
                               return const Center(
-                                child: CircularProgressIndicator(
-                                  color: secondaryColor,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(
+                                    color: secondaryColor,
+                                  ),
                                 ),
                               );
                             } else {
@@ -203,8 +205,11 @@ class _AskQuestionsState extends State<AskQuestions> {
                               );
                             } else if (state is QuestionCategoryLoading) {
                               return const Center(
-                                child: CircularProgressIndicator(
-                                  color: secondaryColor,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(
+                                    color: secondaryColor,
+                                  ),
                                 ),
                               );
                             } else {

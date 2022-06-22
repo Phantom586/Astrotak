@@ -1,4 +1,4 @@
-part of 'relatives_cubit.dart';
+part of 'relatives_bloc.dart';
 
 @immutable
 abstract class RelativesState {}

@@ -5,7 +5,7 @@ class QuestionCategoryApi {
   static final url =
       Uri.parse('https://staging-api.astrotak.com/api/question/category/all');
 
-  static Future<dynamic> getAllQuestionCategories() async {
+  static Future<dynamic> fetchAllQuestionCategories() async {
     var response = await http.get(url);
 
     if (response.statusCode == 200) {

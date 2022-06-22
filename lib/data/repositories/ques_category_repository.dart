@@ -4,8 +4,8 @@ import 'package:astrotak/data/models/question_category.dart';
 class QuestionCategoryRepository {
   const QuestionCategoryRepository();
 
-  Future<List<QuestionCategoryData>> fetchQuestionCategories() async {
-    final data = await QuestionCategoryApi.getAllQuestionCategories();
+  Future<List<QuestionCategoryData>> fetchAllQuestionCategories() async {
+    final data = await QuestionCategoryApi.fetchAllQuestionCategories();
 
     QuestionCategory quesCategory = QuestionCategory.fromJson(data);
     return quesCategory.data!;

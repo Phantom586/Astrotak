@@ -1,6 +1,8 @@
+import 'package:astrotak/logic/bloc/relatives_bloc.dart';
 import 'package:astrotak/presentation/theme/astro_colors.dart';
 import 'package:astrotak/presentation/theme/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddMember extends StatefulWidget {
   const AddMember({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class _AddMemberState extends State<AddMember> {
       _minuteController,
       _placeOfBirthController;
   int _meridian = 1;
+  String? _genderDropdownValue, _relationDropdownValue;
 
   @override
   void initState() {
@@ -417,7 +420,8 @@ class _AddMemberState extends State<AddMember> {
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder()),
                               isExpanded: true,
-                              items: [
+                              value: _genderDropdownValue,
+                              items: const [
                                 DropdownMenuItem(
                                   value: 'MALE',
                                   child: Text('Male'),
@@ -427,7 +431,11 @@ class _AddMemberState extends State<AddMember> {
                                   child: Text('Female'),
                                 ),
                               ],
-                              onChanged: (String? newValue) {})
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  _genderDropdownValue = newValue;
+                                });
+                              })
                         ],
                       ),
                     ),
@@ -451,7 +459,8 @@ class _AddMemberState extends State<AddMember> {
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder()),
                               isExpanded: true,
-                              items: [
+                              value: _relationDropdownValue,
+                              items: const [
                                 DropdownMenuItem(
                                   value: 'Brother',
                                   child: Text('Brother'),
@@ -460,8 +469,20 @@ class _AddMemberState extends State<AddMember> {
                                   value: 'Sister',
                                   child: Text('Sister'),
                                 ),
+                                DropdownMenuItem(
+                                  value: 'Father',
+                                  child: Text('Father'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'Mother',
+                                  child: Text('Mother'),
+                                ),
                               ],
-                              onChanged: (String? newValue) {})
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  _relationDropdownValue = newValue;
+                                });
+                              })
                         ],
                       ),
                     ),
@@ -477,7 +498,30 @@ class _AddMemberState extends State<AddMember> {
                       style:
                           TextButton.styleFrom(backgroundColor: secondaryColor),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          final memberInfo = {
+                            "birthDetails": {
+                              "dobDay": _dateController.text,
+                              "dobMonth": _monthController.text,
+                              "dobYear": _yearController.text,
+                              "tobHour": _hourController.text,
+                              "tobMin": _minuteController.text,
+                              "meridiem": _meridian == 1 ? "AM" : "PM"
+                            },
+                            "birthPlace": const {
+                              "placeName": "Kanpur, India",
+                              "placeId": "ChIJwTa3v_6nkjkRC_b2yajUF_M"
+                            },
+                            "firstName": _nameController.text,
+                            "lastName": "Kumar",
+                            "relationId": 3,
+                            "gender": _genderDropdownValue
+                          };
+                          context
+                              .read<RelativesBloc>()
+                              .add(AddRelative(data: memberInfo));
+                          Navigator.of(context).pop();
+                        }
                       },
                       child: Text(
                         'Save Changes',

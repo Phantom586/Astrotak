@@ -1,8 +1,8 @@
+import 'package:astrotak/logic/bloc/relatives_bloc.dart';
 import 'package:astrotak/presentation/screens/profile/bottomsheet/add_member.dart';
 import 'package:astrotak/presentation/widgets/relatives_list.dart';
 import 'package:astrotak/presentation/theme/astro_colors.dart';
 import 'package:astrotak/presentation/theme/text_styles.dart';
-import 'package:astrotak/logic/cubit/relatives_cubit.dart';
 import 'package:astrotak/logic/cubit/internet_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +17,18 @@ class TabFriendsAndFamily extends StatefulWidget {
 class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
   late ScrollController _scrollController;
 
+  void _fetchData() {
+    final internetState = context.read<InternetCubit>().state;
+    if (internetState is InternetConnected) {
+      context.read<RelativesBloc>().add(FetchRelative());
+    }
+  }
+
   @override
   void initState() {
     _scrollController = ScrollController();
     super.initState();
+    _fetchData();
   }
 
   @override
@@ -34,15 +42,16 @@ class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
     return BlocListener<InternetCubit, InternetState>(
       listener: (context, state) {
         if (state is InternetConnected) {
-          print("Internet Connected");
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Internet Connected')));
-
-          // Fetching All Relatives.
-          // context.read<RelativesCubit>().getRelatives();
+          context.read<RelativesBloc>().add(FetchRelative());
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(
+            'Internet Connected',
+          )));
         } else if (state is InternetDisconnected) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Internet Disconnected')));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text(
+            'Internet Disconnected',
+          )));
         }
       },
       child: Scaffold(
@@ -109,14 +118,14 @@ class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
                     style: p2_paragraph.copyWith(color: primaryColor),
                   ),
                   const SizedBox(
-                    width: 40.0,
+                    width: 50.0,
                   ),
                   Text(
                     'TOB',
                     style: p2_paragraph.copyWith(color: primaryColor),
                   ),
                   const SizedBox(
-                    width: 40.0,
+                    width: 45.0,
                   ),
                   Text(
                     'Relation',
@@ -128,7 +137,7 @@ class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
             const SizedBox(
               height: 10.0,
             ),
-            BlocBuilder<RelativesCubit, RelativesState>(
+            BlocBuilder<RelativesBloc, RelativesState>(
               builder: (context, state) {
                 if (state is RelativesLoaded) {
                   return RelativesList(
@@ -137,8 +146,11 @@ class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
                   );
                 } else if (state is RelativesLoading) {
                   return const Center(
-                    child: CircularProgressIndicator(
-                      color: secondaryColor,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CircularProgressIndicator(
+                        color: secondaryColor,
+                      ),
                     ),
                   );
                 } else {
@@ -152,8 +164,11 @@ class _TabFriendsAndFamilyState extends State<TabFriendsAndFamily> {
                   showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      builder: (context) {
-                        return const AddMember();
+                      builder: (_) {
+                        return BlocProvider.value(
+                          value: context.read<RelativesBloc>(),
+                          child: const AddMember(),
+                        );
                       });
                 },
                 icon: const Icon(

@@ -11,11 +11,11 @@ class QuestionCategoryCubit extends Cubit<QuestionCategoryState> {
   QuestionCategoryCubit({required this.quesCategoryRepository})
       : super(QuestionCategoryInitial(questionCategoryDataList: const []));
 
-  Future getQuestionCategories() async {
+  Future fetchAllQuestionCategories() async {
     emit(QuestionCategoryLoading());
 
     final questionCategories =
-        await quesCategoryRepository.fetchQuestionCategories();
+        await quesCategoryRepository.fetchAllQuestionCategories();
 
     emit(QuestionCategoryLoaded(questionCategoryDataList: questionCategories));
   }

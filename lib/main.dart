@@ -3,10 +3,10 @@ import 'package:astrotak/data/repositories/relatives_repository.dart';
 import 'package:astrotak/presentation/screens/profile/profile.dart';
 import 'package:astrotak/presentation/screens/bottom_nav_bar.dart';
 import 'package:astrotak/logic/cubit/question_category_cubit.dart';
-import 'package:astrotak/logic/cubit/relatives_cubit.dart';
 import 'package:astrotak/presentation/screens/splash.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:astrotak/logic/cubit/internet_cubit.dart';
+import 'package:astrotak/logic/bloc/relatives_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
                 child: const BottomNavBar(),
               ),
           '/profile': (context) => BlocProvider(
-                create: (context) => RelativesCubit(
+                create: (context) => RelativesBloc(
                     relativesRepository: const RelativesRepository()),
                 child: const MyProfile(),
               )

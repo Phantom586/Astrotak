@@ -11,46 +11,46 @@ class MyProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.0,
-          leading: InkWell(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Image.asset('assets/icons/back.png'),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Image.asset('assets/icons/back.png'),
           ),
-          leadingWidth: size.width * 0.09,
-          title: Image.asset(
-            'assets/icons/icon.png',
-            width: size.width * 0.15,
-          ),
-          centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: secondaryColor),
-                    borderRadius: BorderRadius.circular(5.0)),
-                child: Center(
-                  child: Text(
-                    'Logout',
-                    style: p2_paragraph.copyWith(color: secondaryColor),
-                  ),
+        ),
+        leadingWidth: size.width * 0.09,
+        title: Image.asset(
+          'assets/icons/icon.png',
+          width: size.width * 0.15,
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: secondaryColor),
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Center(
+                child: Text(
+                  'Logout',
+                  style: p2_paragraph.copyWith(color: secondaryColor),
                 ),
               ),
             ),
-          ],
-        ),
-        body: SafeArea(
+          ),
+        ],
+      ),
+      body: DefaultTabController(
+        length: 2,
+        child: SafeArea(
             child: Column(
           children: [
             TabBar(
@@ -59,6 +59,7 @@ class MyProfile extends StatelessWidget {
                 unselectedLabelStyle: p1_paragraph,
                 unselectedLabelColor: Colors.black87,
                 indicatorColor: secondaryColor,
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 tabs: const [
                   Tab(
                     child: Text(
