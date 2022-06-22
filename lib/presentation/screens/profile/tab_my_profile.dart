@@ -1,7 +1,10 @@
+import 'package:astrotak/logic/cubit/internet_cubit.dart';
 import 'package:astrotak/presentation/screens/profile/tab_friends_family.dart';
 import 'package:astrotak/presentation/screens/profile/tab_basic_profile.dart';
 import 'package:astrotak/presentation/theme/astro_colors.dart';
 import 'package:astrotak/presentation/theme/text_styles.dart';
+import 'package:astrotak/logic/cubit/relatives_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 
 class TabMyProfile extends StatefulWidget {
@@ -32,30 +35,33 @@ class _TabMyProfileState extends State<TabMyProfile>
     return Scaffold(
       body: Column(children: [
         TabBar(
-            controller: _tabController,
-            labelColor: Colors.white,
-            labelStyle: p1_paragraph.copyWith(color: Colors.white),
-            unselectedLabelStyle: p1_paragraph,
-            unselectedLabelColor: Colors.black87,
-            indicatorColor: secondaryColor,
-            indicator: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.circular(5.0)),
-            tabs: const [
-              Tab(
-                child: Text('Basic Profile'),
-              ),
-              Tab(
-                child: Text('Friends and Family'),
-              ),
-            ]),
+          controller: _tabController,
+          labelColor: Colors.white,
+          labelStyle: p1_paragraph.copyWith(color: Colors.white),
+          unselectedLabelStyle: p1_paragraph,
+          unselectedLabelColor: Colors.black87,
+          indicatorColor: secondaryColor,
+          indicator: BoxDecoration(
+              color: secondaryColor, borderRadius: BorderRadius.circular(5.0)),
+          tabs: const [
+            Tab(
+              child: Text('Basic Profile'),
+            ),
+            Tab(
+              child: Text('Friends and Family'),
+            ),
+          ],
+        ),
         const SizedBox(
           height: 10.0,
         ),
         Expanded(
           child: TabBarView(
             controller: _tabController,
-            children: const [TabBasicProfile(), TabFriendsAndFamily()],
+            children: const [
+              TabBasicProfile(),
+              TabFriendsAndFamily(),
+            ],
           ),
         ),
       ]),

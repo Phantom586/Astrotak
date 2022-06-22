@@ -33,9 +33,6 @@ class _AskQuestionsState extends State<AskQuestions> {
     return BlocListener<InternetCubit, InternetState>(
       listener: (context, state) async {
         if (state is InternetConnected) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Internet Connected')));
-
           // Fetching the Question Categories List.
           context.read<QuestionCategoryCubit>().getQuestionCategories();
         } else if (state is InternetDisconnected) {

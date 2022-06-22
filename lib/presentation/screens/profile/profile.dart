@@ -1,5 +1,5 @@
-import 'package:astrotak/presentation/screens/profile/tab_my_profile.dart';
 import 'package:astrotak/presentation/screens/profile/tab_order_history.dart';
+import 'package:astrotak/presentation/screens/profile/tab_my_profile.dart';
 import 'package:astrotak/presentation/theme/astro_colors.dart';
 import 'package:astrotak/presentation/theme/text_styles.dart';
 import 'package:flutter/material.dart';

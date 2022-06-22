@@ -1,4 +1,4 @@
-import 'package:astrotak/data/repositories/ques_category.dart';
+import 'package:astrotak/data/repositories/ques_category_repository.dart';
 import 'package:astrotak/data/models/question_category.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
